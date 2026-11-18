@@ -1,1 +1,0 @@
-# embedded-devops-ch07
