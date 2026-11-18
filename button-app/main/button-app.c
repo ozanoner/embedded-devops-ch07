@@ -32,15 +32,15 @@ void app_main(void)
 
 static void app_single_click_cb(void *button_handle, void *usr_data)
 {
-    ESP_LOGI(LOG_TAG, "Button single-click detected");
+    ESP_LOGD(LOG_TAG, "Button single-click detected");
 }
 
 static void app_long_press_cb(void *button_handle, void *usr_data)
 {
-    ESP_LOGI(LOG_TAG, "Button long-press detected");
+    ESP_LOGD(LOG_TAG, "Button long-press detected");
 }
 
 static void on_connected(void *arg)
 {
-    ESP_LOGI(LOG_TAG, "Wi-Fi connected");
+    ESP_LOGD(LOG_TAG, "Wi-Fi connected");
 }
