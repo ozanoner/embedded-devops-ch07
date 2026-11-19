@@ -3,6 +3,7 @@
 #include "iot_button.h"
 #include "button_gpio.h"
 #include "devops_easy_connect.h"
+#include "log_history.h"
 
 static const char *LOG_TAG = "app";
 static const char *WIFI_SSID = "Wokwi-GUEST";
@@ -17,6 +18,8 @@ static void on_connected(void *arg);
 
 void app_main(void)
 {
+    LogHistory_init();
+
     ESP_LOGI(LOG_TAG, "The app is starting...");
     app_wifi_init(WIFI_SSID, WIFI_PASS, on_connected, NULL);
     app_wifi_connect();
@@ -38,6 +41,7 @@ static void app_single_click_cb(void *button_handle, void *usr_data)
 static void app_long_press_cb(void *button_handle, void *usr_data)
 {
     ESP_LOGD(LOG_TAG, "Button long-press detected");
+    LogHistory_dump();
 }
 
 static void on_connected(void *arg)
