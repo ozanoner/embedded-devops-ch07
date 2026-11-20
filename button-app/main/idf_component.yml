@@ -7,3 +7,4 @@ dependencies:
   ozanoner/devops_easy_connect:
     git: https://github.com/ozanoner/devops_easy_connect.git
     version: v1.0.1
+  joltwallet/littlefs: ^1.23.1

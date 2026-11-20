@@ -4,6 +4,9 @@
 #include "button_gpio.h"
 #include "devops_easy_connect.h"
 #include "log_history.h"
+#include "esp_system.h"
+
+#define TEST_FLASH_LOGS 1
 
 static const char *LOG_TAG = "app";
 static const char *WIFI_SSID = "Wokwi-GUEST";
@@ -18,6 +21,7 @@ static void on_connected(void *arg);
 
 void app_main(void)
 {
+    LogHistory_flash_init();
     LogHistory_init();
 
     ESP_LOGI(LOG_TAG, "The app is starting...");
@@ -36,12 +40,19 @@ void app_main(void)
 static void app_single_click_cb(void *button_handle, void *usr_data)
 {
     ESP_LOGD(LOG_TAG, "Button single-click detected");
+#if TEST_FLASH_LOGS
+    esp_restart();
+#endif
 }
 
 static void app_long_press_cb(void *button_handle, void *usr_data)
 {
     ESP_LOGD(LOG_TAG, "Button long-press detected");
+#if TEST_FLASH_LOGS
+    LogHistory_flash_print();
+#else
     LogHistory_dump();
+#endif
 }
 
 static void on_connected(void *arg)
