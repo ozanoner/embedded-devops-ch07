@@ -5,8 +5,10 @@
 #include "devops_easy_connect.h"
 #include "log_history.h"
 #include "esp_system.h"
+#include "crash_info.h"
 
-#define TEST_FLASH_LOGS 1
+#define TEST_FLASH_LOGS 0
+#define TEST_CRASH 1
 
 static const char *LOG_TAG = "app";
 static const char *WIFI_SSID = "Wokwi-GUEST";
@@ -21,6 +23,7 @@ static void on_connected(void *arg);
 
 void app_main(void)
 {
+    CrashInfo_report();
     LogHistory_flash_init();
     LogHistory_init();
 
@@ -42,6 +45,9 @@ static void app_single_click_cb(void *button_handle, void *usr_data)
     ESP_LOGD(LOG_TAG, "Button single-click detected");
 #if TEST_FLASH_LOGS
     esp_restart();
+#elif TEST_CRASH
+    ESP_LOGW(LOG_TAG, "Crashing on purpose");
+    esp_system_abort("Deliberate crash from the single click");
 #endif
 }
 
