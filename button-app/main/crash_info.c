@@ -4,6 +4,7 @@
 #include "esp_attr.h"
 #include "esp_log.h"
 #include "esp_system.h"
+#include "esp_core_dump.h"
 
 static const char *LOG_TAG = "crash";
 
@@ -33,4 +34,12 @@ void CrashInfo_report(void)
 
     ESP_LOGI(LOG_TAG, "Boot %u, reset reason %d, panics %u",
              (unsigned)s_boot_count, (int)reason, (unsigned)s_panic_count);
+
+    size_t addr = 0;
+    size_t size = 0;
+
+    if (esp_core_dump_image_get(&addr, &size) == ESP_OK)
+    {
+        ESP_LOGW(LOG_TAG, "Core dump at 0x%x, %u bytes", (unsigned)addr, (unsigned)size);
+    }
 }
