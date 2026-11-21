@@ -11,7 +11,7 @@
 #include "spotflow_ops.h"
 
 #define TEST_FLASH_LOGS 0
-#define TEST_CRASH 0
+#define TEST_CRASH 1
 
 static const char *LOG_TAG = "app";
 static const char *WIFI_SSID = CONFIG_DEVOPS_WIFI_SSID;
