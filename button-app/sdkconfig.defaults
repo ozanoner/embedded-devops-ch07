@@ -1,7 +1,7 @@
-    # This file was generated using idf.py save-defconfig. It can be edited manually.
-    # Espressif IoT Development Framework (ESP-IDF) 6.0.0 Project Minimal Configuration
-    #
-    # default:
+# This file was generated using idf.py save-defconfig. It can be edited manually.
+# Espressif IoT Development Framework (ESP-IDF) 6.0.0 Project Minimal Configuration
+#
+# default:
 CONFIG_IDF_TARGET="esp32c3"
 CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
 CONFIG_PARTITION_TABLE_CUSTOM=y
@@ -10,5 +10,4 @@ CONFIG_ESP_COREDUMP_ENABLE_TO_FLASH=y
 CONFIG_SPOTFLOW_COREDUMP_BACKEND=y
 CONFIG_SPOTFLOW_LOG_BACKEND=y
 CONFIG_SPOTFLOW_DEBUG_MESSAGE_TERMINAL=y
-# CONFIG_SPOTFLOW_DEVICE_ID=""
-# CONFIG_SPOTFLOW_INGEST_KEY=""
+CONFIG_SPOTFLOW_METRICS=y

@@ -29,6 +29,7 @@ pytest_embedded_log/
 *.log
 **/log/
 **/logs/
+tmp/
 
 # Token files
 insights_auth_key.txt

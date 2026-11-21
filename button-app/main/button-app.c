@@ -8,9 +8,10 @@
 #include "crash_info.h"
 #include "spotflow.h"
 #include "sdkconfig.h"
+#include "spotflow_ops.h"
 
 #define TEST_FLASH_LOGS 0
-#define TEST_CRASH 1
+#define TEST_CRASH 0
 
 static const char *LOG_TAG = "app";
 static const char *WIFI_SSID = CONFIG_DEVOPS_WIFI_SSID;
@@ -45,6 +46,8 @@ void app_main(void)
 static void app_single_click_cb(void *button_handle, void *usr_data)
 {
     ESP_LOGD(LOG_TAG, "Button single-click detected");
+    SpotflowOps_send_click();
+
 #if TEST_FLASH_LOGS
     esp_restart();
 #elif TEST_CRASH
@@ -67,4 +70,5 @@ static void on_connected(void *arg)
 {
     ESP_LOGD(LOG_TAG, "Wi-Fi connected");
     spotflow_init();
+    SpotflowOps_init();
 }
