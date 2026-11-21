@@ -6,13 +6,15 @@
 #include "log_history.h"
 #include "esp_system.h"
 #include "crash_info.h"
+#include "spotflow.h"
+#include "sdkconfig.h"
 
 #define TEST_FLASH_LOGS 0
 #define TEST_CRASH 1
 
 static const char *LOG_TAG = "app";
-static const char *WIFI_SSID = "Wokwi-GUEST";
-static const char *WIFI_PASS = "";
+static const char *WIFI_SSID = CONFIG_DEVOPS_WIFI_SSID;
+static const char *WIFI_PASS = CONFIG_DEVOPS_WIFI_PWD;
 static const int APP_BUTTON_GPIO = 9;
 
 static button_handle_t app_button = NULL;
@@ -64,4 +66,5 @@ static void app_long_press_cb(void *button_handle, void *usr_data)
 static void on_connected(void *arg)
 {
     ESP_LOGD(LOG_TAG, "Wi-Fi connected");
+    spotflow_init();
 }
